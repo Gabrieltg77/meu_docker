@@ -44,7 +44,8 @@ services:
             - my_network
 
     phpmyadmin_dev:
-        image: phpmyadmin:5.2.2
+        image: phpmyadmin:5.2.1
+        platform: linux/arm64/v8
         container_name: phpmyadmin
         environment:
             - PMA_HOST=mysql_dev
