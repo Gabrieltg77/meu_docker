@@ -6,18 +6,6 @@
         LogFormat "%V %h %l %u %t \"%r\" %s %b" vcommon
         ErrorLog "/var/www/logs/vhosts-error-log"
         SetEnv CI_ENV "development"
-
-        # Proxy reverso para o servidor SSE (Swoole) — conexões longas, sem buffer
-        ProxyRequests Off
-        ProxyPreserveHost On
-        ProxyTimeout 86400
-        ProxyPass        /sse/ http://sse:3001/sse/ flushpackets=on keepalive=On timeout=86400
-        ProxyPassReverse /sse/ http://sse:3001/sse/
-        <Location /sse/>
-                SetEnv proxy-sendchunked 1
-                SetEnv no-gzip 1
-        </Location>
-
         <Directory "/var/www/*">
                 Options Indexes FollowSymLinks MultiViews
                 AllowOverride All

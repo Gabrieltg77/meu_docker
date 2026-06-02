@@ -27,23 +27,6 @@ services:
         container_name: redis
         ports:
             - "6379:6379"
-        networks:
-            - my_network
-
-    sse_dev:
-        build: ./app/novoerp/sse
-        container_name: sse
-        volumes:
-            - ./app/novoerp/sse:/var/www/html/sse
-            - /var/www/html/sse/vendor
-            - ./app/novoerp/.env:/var/www/html/.env
-        ports:
-            - "3001:3001"
-        depends_on:
-            - mysql_dev
-            - redis_dev
-        networks:
-            - my_network
 
     mysql_dev:
         container_name: mysql
@@ -54,7 +37,7 @@ services:
             - MYSQL_USER=admin
             - MYSQL_PASSWORD=servidor
         volumes:
-            - mysql_data_volume:/var/lib/mysql:rw
+            - ./mysql_data:/var/lib/mysql
         ports:
             - "3306:3306"
         networks:
@@ -75,6 +58,3 @@ services:
 
 networks:
     my_network:
-
-volumes:
-    mysql_data_volume:

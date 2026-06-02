@@ -24,8 +24,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Ativando mod_rewrite do Apache
 RUN a2enmod rewrite
 
-# Ativando o Virtual Host do Apache 
+# Ativando o Virtual Host do Apache
 RUN a2enmod vhost_alias
+
+# Habilitando proxy reverso para o servidor SSE (Swoole em sse:3001)
+RUN a2enmod proxy proxy_http
 
 # Iniciando o Apache
 CMD apachectl -D FOREGROUND

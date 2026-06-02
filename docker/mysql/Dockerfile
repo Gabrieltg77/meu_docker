@@ -1,6 +1,4 @@
-FROM mysql:8-debian
-
-RUN sudo chown mysql:mysql -R /data/mysql
+FROM mysql:8.0
 
 COPY my.cnf /etc/mysql/conf.d/my.cnf
 
