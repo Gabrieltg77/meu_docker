@@ -1,0 +1,5 @@
+services:
+    application_dev:
+        ports: !override
+            - "80:80"
+            - "8080:8080"
